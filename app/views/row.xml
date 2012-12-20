@@ -1,0 +1,13 @@
+<Alloy>
+	<TableViewRow id="row">
+		<ImageView id="thumbnail"/>
+		<View class ="vgroup">
+			<Label id="name"/>
+			<Label id="price"/>
+			<Label id="type"/>
+			<Label id="room"/>
+			<Label id="desc"/>
+		</View>
+		
+	</TableViewRow>
+</Alloy>

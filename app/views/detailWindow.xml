@@ -1,0 +1,11 @@
+<Alloy>
+	<Window id='detailWin'>
+		<ImageView id='img'/>
+		<ScrollView id='scrollView' layout='vertical'>
+			<Label id='name'/>
+			<Label id='desc'/>
+			<Label id='feature'/>
+			<Label id='location'/>
+		</ScrollView>
+	</Window>
+</Alloy>

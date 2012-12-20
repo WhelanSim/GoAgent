@@ -7,9 +7,9 @@
         <target device="android">false</target>
         <target device="blackberry">false</target>
     </deployment-targets>
-    <sdk-version>2.1.1.GA</sdk-version>
-    <id>com.growber.agentpoint</id>
-    <name>Agent Point Prototype</name>
+    <sdk-version>2.1.4.GA</sdk-version>
+    <id>com.growber.goagentalpha</id>
+    <name>GoAgent Alpha</name>
     <version>1.0</version>
     <publisher>whelansim</publisher>
     <url>http://</url>
@@ -23,7 +23,7 @@
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
     <analytics>true</analytics>
-    <guid>718ee0ba-a7fe-439f-b371-cb476cd74b69</guid>
+    <guid>7996351a-0d7c-4cf9-b86f-9406d1750534</guid>
     <property name="ti.ui.defaultunit">system</property>
     <iphone>
         <orientations device="iphone">
@@ -45,5 +45,10 @@
         </splash>
         <theme>default</theme>
     </mobileweb>
-    <modules/>
+    <modules>
+        <module platform="android" version="1.0">ti.physicalSizeCategory</module>
+    </modules>
+    <plugins>
+        <plugin version="1.0">ti.alloy</plugin>
+    </plugins>
 </ti:app>

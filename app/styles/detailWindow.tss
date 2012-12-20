@@ -1,0 +1,48 @@
+"#detailWin": {
+	backgroundImage: "Pic/768_1024BG.jpg",
+	title:'Whelan is here :)'
+},
+"#img":{
+	top:0,
+	width:768,
+	height:288
+},
+"#scrollView":{
+	width:768,
+	height:Ti.UI.SIZE,
+	top: 300
+},
+"#name":{
+	top:10,
+	width:748,
+	left:5,
+	height:20,
+	color:'white',
+	font:{
+		fontWeight:'bold'
+	}
+},
+"#desc":{
+	top:10,
+	width:748,
+	left:5,
+	height:Ti.UI.SIZE
+},
+"#feature":{
+	top:10,
+	width:748,
+	left:5,
+	height:Ti.UI.SIZE,
+	font:{
+		fontWeight:'bold'
+	}
+},
+"#location":{
+	top:20,
+	width:200,
+	left:5,
+	height:20,
+	font:{
+		fontWeight:'bold'
+	}
+}

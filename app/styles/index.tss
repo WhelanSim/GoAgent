@@ -1,0 +1,17 @@
+"Window": {
+	backgroundColor: "#fff",
+	backgroundImage: "Pic/768_1024BG.jpg"
+},
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	font: {
+		fontSize: 20,
+		fontFamily: 'Helvetica Neue'
+	},
+	textAlign: 'center'
+}, 
+"TableView": {
+	backgroundColor: "transparent",
+	separatorColor:'transparent',
+},
