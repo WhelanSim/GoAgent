@@ -61,10 +61,4 @@
 	animate:true,
 	regionFit:true,
 	userLocation:true
-},
-"Annotation2":{
-	animate:true,
-	myid:0,
-	image:'Pic/krr_map_dropin.png',
-	rightButton:'Pic/startbutton.png'
 }

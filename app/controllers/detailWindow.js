@@ -6,6 +6,7 @@ $.desc.text = args.desc ||'';
 $.location.text = 'LOCATION';
 $.feature.text = 'FEATURES' + '\n- ' + args.price +'\n- '+ args.room + '\n- ' + args.type;
 
+// ----------------- Set up google map & annotation ------------------- //
 var annotation = Ti.Map.createAnnotation({
 	latitude:args.lat,
 	longitude:args.lon,
@@ -25,3 +26,4 @@ $.mapView.region = {
 };
 		
 $.mapView.addAnnotation(annotation);
+// ----------------- END of Set up google map & annotation ------------------- //
