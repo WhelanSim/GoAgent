@@ -98,7 +98,6 @@ function Controller() {
     $.desc.text = args.desc || "";
     $.location.text = "LOCATION";
     $.feature.text = "FEATURES\n- " + args.price + "\n- " + args.room + "\n- " + args.type;
-    Ti.API.info(args.lat + "    " + args.lon);
     var annotation = Ti.Map.createAnnotation({
         latitude: args.lat,
         longitude: args.lon,

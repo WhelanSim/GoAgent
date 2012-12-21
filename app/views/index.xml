@@ -1,16 +1,21 @@
 <Alloy>
 	<TabGroup>
-		<Tab id='tab1' title="All Listing" icon="KS_nav_ui.png">
+		<Tab id="tab1" title="All Listing" icon="KS_nav_ui.png">
 			<Window title="All Listing">
-				<TableView id="table" onclick="doClick"/>
+				<TableView id="table"/>
 			</Window>
 		</Tab>
-		<Tab title="Announcement" icon="KS_nav_views.png">
+		<Tab id="tab2" title="Announcement" icon="KS_nav_views.png">
 			<Window title="Announcement">
-				<Label>I am Window 2</Label>
+				<TableView id="announcementTable"/>
 			</Window>
 		</Tab>
-		<!--
+		<Tab id="tab3" title="Favourite" icon="KS_nav_views.png">
+			<Window title="Favourite">
+				<Label>Favourite listing</Label>
+			</Window>
+		</Tab>
+				<!--
 		<Tab title="Submit" icon="KS_nav_views.png">
 			<Window title="Submit">
 				<Label>Submit new property</Label>
@@ -22,10 +27,5 @@
 			</Window>
 		</Tab>
 		-->
-		<Tab title="Favourite" icon="KS_nav_views.png">
-			<Window title="Favourite">
-				<Label>Favourite listing</Label>
-			</Window>
-		</Tab>
 	</TabGroup>
 </Alloy>

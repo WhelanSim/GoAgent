@@ -11,7 +11,7 @@ function Controller() {
             url = "http://goagent.growbers.com/model/property_call.php?format=json";
             break;
           case 1:
-            url = "http://goagent.growbers.com/model/property_getType.php?format=json&type=condo";
+            url = "http://goagent.growbers.com/model/news_getInfo.php?format=json&newstype";
             break;
           case 2:
             url = "http://goagent.growbers.com/model/property_getType.php?format=json&type=single family";
@@ -26,7 +26,6 @@ function Controller() {
         xhr.send();
     }
     function display(_return) {
-        Ti.API.info(_return);
         var obj = JSON.parse(_return), data = [];
         for (var i = 0, j = obj.items.length; i < j; i++) {
             var item = {};
@@ -44,7 +43,26 @@ function Controller() {
             data.push(row);
             tableData.push(item);
         }
+        retrieveData(handleAnnouncement, 1);
         $.table.setData(data);
+    }
+    function handleAnnouncement(_return) {
+        Ti.API.info(_return);
+        var obj = JSON.parse(_return), data = [];
+        for (var i = 0, j = obj.items.length; i < j; i++) {
+            var item = {};
+            item.id = obj.items[i].item.newsid;
+            item.title = obj.items[i].item.title;
+            item.desc = obj.items[i].item.description;
+            item.dtime = obj.items[i].item.dtime;
+            item.author = obj.items[i].item.author;
+            item.newstype = obj.items[i].item.newstype;
+            var row = Alloy.createController("row_announce", item).getView();
+            data.push(row);
+            announcementData.push(item);
+        }
+        $.announcementTable.setData(data);
+        Ti.API.info("end");
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     $model = arguments[0] ? arguments[0].$model : null;
@@ -61,8 +79,7 @@ function Controller() {
     $.__views.table = A$(Ti.UI.createTableView({
         backgroundColor: "transparent",
         separatorColor: "transparent",
-        id: "table",
-        onclick: "doClick"
+        id: "table"
     }), "TableView", $.__views.__alloyId2);
     $.__views.__alloyId2.add($.__views.table);
     $.__views.tab1 = A$(Ti.UI.createTab({
@@ -72,10 +89,29 @@ function Controller() {
         icon: "KS_nav_ui.png"
     }), "Tab", null);
     $.__views.index.addTab($.__views.tab1);
-    $.__views.__alloyId4 = A$(Ti.UI.createWindow({
+    $.__views.__alloyId3 = A$(Ti.UI.createWindow({
         backgroundColor: "#fff",
         backgroundImage: "Pic/768_1024BG.jpg",
         title: "Announcement",
+        id: "__alloyId3"
+    }), "Window", null);
+    $.__views.announcementTable = A$(Ti.UI.createTableView({
+        backgroundColor: "transparent",
+        separatorColor: "transparent",
+        id: "announcementTable"
+    }), "TableView", $.__views.__alloyId3);
+    $.__views.__alloyId3.add($.__views.announcementTable);
+    $.__views.tab2 = A$(Ti.UI.createTab({
+        window: $.__views.__alloyId3,
+        id: "tab2",
+        title: "Announcement",
+        icon: "KS_nav_views.png"
+    }), "Tab", null);
+    $.__views.index.addTab($.__views.tab2);
+    $.__views.__alloyId4 = A$(Ti.UI.createWindow({
+        backgroundColor: "#fff",
+        backgroundImage: "Pic/768_1024BG.jpg",
+        title: "Favourite",
         id: "__alloyId4"
     }), "Window", null);
     $.__views.__alloyId5 = A$(Ti.UI.createLabel({
@@ -87,48 +123,22 @@ function Controller() {
             fontFamily: "Helvetica Neue"
         },
         textAlign: "center",
-        text: "I am Window 2",
+        text: "Favourite listing",
         id: "__alloyId5"
     }), "Label", $.__views.__alloyId4);
     $.__views.__alloyId4.add($.__views.__alloyId5);
-    $.__views.__alloyId3 = A$(Ti.UI.createTab({
+    $.__views.tab3 = A$(Ti.UI.createTab({
         window: $.__views.__alloyId4,
-        title: "Announcement",
-        icon: "KS_nav_views.png",
-        id: "__alloyId3"
-    }), "Tab", null);
-    $.__views.index.addTab($.__views.__alloyId3);
-    $.__views.__alloyId7 = A$(Ti.UI.createWindow({
-        backgroundColor: "#fff",
-        backgroundImage: "Pic/768_1024BG.jpg",
+        id: "tab3",
         title: "Favourite",
-        id: "__alloyId7"
-    }), "Window", null);
-    $.__views.__alloyId8 = A$(Ti.UI.createLabel({
-        color: "white",
-        height: Ti.UI.SIZE,
-        width: Ti.UI.SIZE,
-        font: {
-            fontSize: 20,
-            fontFamily: "Helvetica Neue"
-        },
-        textAlign: "center",
-        text: "Favourite listing",
-        id: "__alloyId8"
-    }), "Label", $.__views.__alloyId7);
-    $.__views.__alloyId7.add($.__views.__alloyId8);
-    $.__views.__alloyId6 = A$(Ti.UI.createTab({
-        window: $.__views.__alloyId7,
-        title: "Favourite",
-        icon: "KS_nav_views.png",
-        id: "__alloyId6"
+        icon: "KS_nav_views.png"
     }), "Tab", null);
-    $.__views.index.addTab($.__views.__alloyId6);
+    $.__views.index.addTab($.__views.tab3);
     $.addTopLevelView($.__views.index);
     exports.destroy = function() {};
     _.extend($, $.__views);
     retrieveData(display, 0);
-    var tableData = [];
+    var tableData = [], announcementData = [];
     $.table.on("swipe", function(e) {
         alert(e);
     });
