@@ -1,26 +1,25 @@
 var args = arguments[0] || {};
 $.detailWin.title = args.name || '';
-//$.img.image = args.photo || '';
 $.name.text = args.name || '';
 $.desc.text = args.desc ||'';
 $.location.text = 'LOCATION';
 $.feature.text = 'FEATURES' + '\n- ' + args.price +'\n- '+ args.room + '\n- ' + args.type;
 
-// ----------------- Populate Scrollable View with Picture ------------------- //
+// ----------------- Populate Scrollable View with Multiple Photos ------------------- //
 var views = [];
-views.push(Ti.UI.createView({backgroundImage:args.photo||''}));
-for(var i=0, j=3; i<j; i++){
-	var view = Ti.UI.createView({ backgroundColor:'#123' });	
+Ti.API.info(args.images);
+for(var i=0, j=args.images.length; i<j; i++){
+	var view = Ti.UI.createImageView({image:args.images[i]});
 	views.push(view);
 }
 $.scrollableView.views = views;
 
+// tap to open full screen
 $.scrollableView.on('singletap', function(e){
-	Ti.API.info($.scrollableView.currentPage);
-	var a = args.photo;
-	Ti.App.fireEvent('app:tab1 open', {data:a});
+	var a = args.images[$.scrollableView.currentPage];
+	Ti.App.fireEvent('app:tab1 open', {data:a, index:$.scrollableView.currentPage});
 })
-// ----------------- END of Populate Scrollable View with Picture ------------------- //
+// ----------------- END of Populate Scrollable View with multiple photos ------------------- //
 
 
 // ----------------- Set up google map & annotation ------------------- //

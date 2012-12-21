@@ -8,7 +8,7 @@ function Controller() {
         var url = "";
         switch (selection) {
           case 0:
-            url = "http://goagent.growbers.com/model/property_call.php?format=json";
+            url = "http://goagent.growbers.com/model/property_getType.php?format=json";
             break;
           case 1:
             url = "http://goagent.growbers.com/model/news_getInfo.php?format=json&newstype";
@@ -16,8 +16,8 @@ function Controller() {
           case 2:
             url = "http://goagent.growbers.com/model/property_getType.php?format=json&type=single family";
             break;
-          case 4:
-            url = "http://goagent.growbers.com/model/property_getType.php?format=json&bedroom=1";
+          case 3:
+            url = "http://goagent.growbers.com/model/property_call.php?format=json";
             break;
           default:
             url = "http://goagent.growbers.com/model/property_call.php?format=json";
@@ -29,15 +29,22 @@ function Controller() {
         var obj = JSON.parse(_return), data = [];
         for (var i = 0, j = obj.items.length; i < j; i++) {
             var item = {};
-            item.id = obj.items[i].item.propertyid;
-            item.name = obj.items[i].item.propertyname;
-            item.price = obj.items[i].item.price;
-            item.type = obj.items[i].item.type;
-            item.room = obj.items[i].item.bedroom;
-            item.desc = obj.items[i].item.description;
-            item.photo = obj.items[i].item.photo;
-            item.lat = obj.items[i].item.geo_lat;
-            item.lon = obj.items[i].item.geo_lon;
+            item.id = obj.items[i].propertyid;
+            item.name = obj.items[i].propertyname;
+            item.price = obj.items[i].price;
+            item.type = obj.items[i].ptype;
+            item.room = obj.items[i].bedroom;
+            item.desc = obj.items[i].description;
+            item.thumbnail = obj.items[i].thumbnail;
+            item.lat = obj.items[i].geo_lat;
+            item.lon = obj.items[i].geo_lon;
+            item.images = [];
+            var images = [];
+            for (var k = 0, l = obj.items[i].links.length; k < l; k++) {
+                Ti.API.warn(obj.items[i].links[k]);
+                images.push(obj.items[i].links[k]);
+            }
+            item.images = images;
             if (item.photo === null || item.photo === "") item.photo = "KS_nav_ui.png";
             var row = Alloy.createController("row", item).getView();
             data.push(row);
@@ -51,12 +58,12 @@ function Controller() {
         var obj = JSON.parse(_return), data = [];
         for (var i = 0, j = obj.items.length; i < j; i++) {
             var item = {};
-            item.id = obj.items[i].item.newsid;
-            item.title = obj.items[i].item.title;
-            item.desc = obj.items[i].item.description;
-            item.dtime = obj.items[i].item.dtime;
-            item.author = obj.items[i].item.author;
-            item.newstype = obj.items[i].item.newstype;
+            item.id = obj.items[i].newsid;
+            item.title = obj.items[i].title;
+            item.desc = obj.items[i].description;
+            item.dtime = obj.items[i].dtime;
+            item.author = obj.items[i].author;
+            item.newstype = obj.items[i].newstype;
             var row = Alloy.createController("row_announce", item).getView();
             data.push(row);
             announcementData.push(item);

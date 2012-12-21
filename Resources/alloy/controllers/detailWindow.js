@@ -101,21 +101,19 @@ function Controller() {
     $.location.text = "LOCATION";
     $.feature.text = "FEATURES\n- " + args.price + "\n- " + args.room + "\n- " + args.type;
     var views = [];
-    views.push(Ti.UI.createView({
-        backgroundImage: args.photo || ""
-    }));
-    for (var i = 0, j = 3; i < j; i++) {
-        var view = Ti.UI.createView({
-            backgroundColor: "#123"
+    Ti.API.info(args.images);
+    for (var i = 0, j = args.images.length; i < j; i++) {
+        var view = Ti.UI.createImageView({
+            image: args.images[i]
         });
         views.push(view);
     }
     $.scrollableView.views = views;
     $.scrollableView.on("singletap", function(e) {
-        Ti.API.info($.scrollableView.currentPage);
-        var a = args.photo;
+        var a = args.images[$.scrollableView.currentPage];
         Ti.App.fireEvent("app:tab1 open", {
-            data: a
+            data: a,
+            index: $.scrollableView.currentPage
         });
     });
     var annotation = Ti.Map.createAnnotation({
