@@ -37,6 +37,8 @@ function Controller() {
             item.room = obj.items[i].item.bedroom;
             item.desc = obj.items[i].item.description;
             item.photo = obj.items[i].item.photo;
+            item.lat = obj.items[i].item.geo_lat;
+            item.lon = obj.items[i].item.geo_lon;
             if (item.photo === null || item.photo === "") item.photo = "KS_nav_ui.png";
             var row = Alloy.createController("row", item).getView();
             data.push(row);
@@ -46,38 +48,37 @@ function Controller() {
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     $model = arguments[0] ? arguments[0].$model : null;
-    var $ = this, exports = {};
+    var $ = this, exports = {}, __defers = {};
     $.__views.index = A$(Ti.UI.createTabGroup({
         id: "index"
     }), "TabGroup", null);
-    $.__views.__alloyId1 = A$(Ti.UI.createWindow({
+    $.__views.__alloyId2 = A$(Ti.UI.createWindow({
         backgroundColor: "#fff",
         backgroundImage: "Pic/768_1024BG.jpg",
         title: "All Listing",
-        id: "__alloyId1"
+        id: "__alloyId2"
     }), "Window", null);
-    var __alloyId2 = [];
     $.__views.table = A$(Ti.UI.createTableView({
         backgroundColor: "transparent",
         separatorColor: "transparent",
         id: "table",
         onclick: "doClick"
-    }), "TableView", $.__views.__alloyId1);
-    $.__views.__alloyId1.add($.__views.table);
+    }), "TableView", $.__views.__alloyId2);
+    $.__views.__alloyId2.add($.__views.table);
     $.__views.tab1 = A$(Ti.UI.createTab({
-        window: $.__views.__alloyId1,
+        window: $.__views.__alloyId2,
         id: "tab1",
         title: "All Listing",
         icon: "KS_nav_ui.png"
     }), "Tab", null);
     $.__views.index.addTab($.__views.tab1);
-    $.__views.__alloyId5 = A$(Ti.UI.createWindow({
+    $.__views.__alloyId4 = A$(Ti.UI.createWindow({
         backgroundColor: "#fff",
         backgroundImage: "Pic/768_1024BG.jpg",
         title: "Announcement",
-        id: "__alloyId5"
+        id: "__alloyId4"
     }), "Window", null);
-    $.__views.__alloyId6 = A$(Ti.UI.createLabel({
+    $.__views.__alloyId5 = A$(Ti.UI.createLabel({
         color: "white",
         height: Ti.UI.SIZE,
         width: Ti.UI.SIZE,
@@ -87,23 +88,23 @@ function Controller() {
         },
         textAlign: "center",
         text: "I am Window 2",
-        id: "__alloyId6"
-    }), "Label", $.__views.__alloyId5);
-    $.__views.__alloyId5.add($.__views.__alloyId6);
-    $.__views.__alloyId4 = A$(Ti.UI.createTab({
-        window: $.__views.__alloyId5,
+        id: "__alloyId5"
+    }), "Label", $.__views.__alloyId4);
+    $.__views.__alloyId4.add($.__views.__alloyId5);
+    $.__views.__alloyId3 = A$(Ti.UI.createTab({
+        window: $.__views.__alloyId4,
         title: "Announcement",
         icon: "KS_nav_views.png",
-        id: "__alloyId4"
+        id: "__alloyId3"
     }), "Tab", null);
-    $.__views.index.addTab($.__views.__alloyId4);
-    $.__views.__alloyId8 = A$(Ti.UI.createWindow({
+    $.__views.index.addTab($.__views.__alloyId3);
+    $.__views.__alloyId7 = A$(Ti.UI.createWindow({
         backgroundColor: "#fff",
         backgroundImage: "Pic/768_1024BG.jpg",
         title: "Favourite",
-        id: "__alloyId8"
+        id: "__alloyId7"
     }), "Window", null);
-    $.__views.__alloyId9 = A$(Ti.UI.createLabel({
+    $.__views.__alloyId8 = A$(Ti.UI.createLabel({
         color: "white",
         height: Ti.UI.SIZE,
         width: Ti.UI.SIZE,
@@ -113,17 +114,18 @@ function Controller() {
         },
         textAlign: "center",
         text: "Favourite listing",
-        id: "__alloyId9"
-    }), "Label", $.__views.__alloyId8);
-    $.__views.__alloyId8.add($.__views.__alloyId9);
-    $.__views.__alloyId7 = A$(Ti.UI.createTab({
-        window: $.__views.__alloyId8,
+        id: "__alloyId8"
+    }), "Label", $.__views.__alloyId7);
+    $.__views.__alloyId7.add($.__views.__alloyId8);
+    $.__views.__alloyId6 = A$(Ti.UI.createTab({
+        window: $.__views.__alloyId7,
         title: "Favourite",
         icon: "KS_nav_views.png",
-        id: "__alloyId7"
+        id: "__alloyId6"
     }), "Tab", null);
-    $.__views.index.addTab($.__views.__alloyId7);
+    $.__views.index.addTab($.__views.__alloyId6);
     $.addTopLevelView($.__views.index);
+    exports.destroy = function() {};
     _.extend($, $.__views);
     retrieveData(display, 0);
     var tableData = [];

@@ -45,4 +45,26 @@
 	font:{
 		fontWeight:'bold'
 	}
+},
+"#mapView":{
+	top:20,
+	left:5,
+	width:500,
+	height:500,
+	mapType: Ti.Map.STANDARD_TYPE,
+	region:{
+		latitude:3.13802,
+		longitude:101.620777,
+		latitudeDelta:0.01,
+		longitudeDelta:0.01
+	},
+	animate:true,
+	regionFit:true,
+	userLocation:true
+},
+"Annotation2":{
+	animate:true,
+	myid:0,
+	image:'Pic/krr_map_dropin.png',
+	rightButton:'Pic/startbutton.png'
 }

@@ -1,7 +1,7 @@
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     $model = arguments[0] ? arguments[0].$model : null;
-    var $ = this, exports = {};
+    var $ = this, exports = {}, __defers = {};
     $.__views.row = A$(Ti.UI.createTableViewRow({
         className: "property_row",
         height: 163,
@@ -19,10 +19,10 @@ function Controller() {
         id: "thumbnail"
     }), "ImageView", $.__views.row);
     $.__views.row.add($.__views.thumbnail);
-    $.__views.__alloyId10 = A$(Ti.UI.createView({
-        id: "__alloyId10"
+    $.__views.__alloyId9 = A$(Ti.UI.createView({
+        id: "__alloyId9"
     }), "View", $.__views.row);
-    $.__views.row.add($.__views.__alloyId10);
+    $.__views.row.add($.__views.__alloyId9);
     $.__views.name = A$(Ti.UI.createLabel({
         color: "white",
         height: 20,
@@ -36,8 +36,8 @@ function Controller() {
             fontWeight: "bold"
         },
         id: "name"
-    }), "Label", $.__views.__alloyId10);
-    $.__views.__alloyId10.add($.__views.name);
+    }), "Label", $.__views.__alloyId9);
+    $.__views.__alloyId9.add($.__views.name);
     $.__views.price = A$(Ti.UI.createLabel({
         color: "white",
         height: 40,
@@ -50,8 +50,8 @@ function Controller() {
         top: 30,
         left: 100,
         id: "price"
-    }), "Label", $.__views.__alloyId10);
-    $.__views.__alloyId10.add($.__views.price);
+    }), "Label", $.__views.__alloyId9);
+    $.__views.__alloyId9.add($.__views.price);
     $.__views.type = A$(Ti.UI.createLabel({
         color: "white",
         height: 40,
@@ -64,8 +64,8 @@ function Controller() {
         top: 45,
         left: 100,
         id: "type"
-    }), "Label", $.__views.__alloyId10);
-    $.__views.__alloyId10.add($.__views.type);
+    }), "Label", $.__views.__alloyId9);
+    $.__views.__alloyId9.add($.__views.type);
     $.__views.room = A$(Ti.UI.createLabel({
         color: "white",
         height: 40,
@@ -78,8 +78,8 @@ function Controller() {
         top: 60,
         left: 100,
         id: "room"
-    }), "Label", $.__views.__alloyId10);
-    $.__views.__alloyId10.add($.__views.room);
+    }), "Label", $.__views.__alloyId9);
+    $.__views.__alloyId9.add($.__views.room);
     $.__views.desc = A$(Ti.UI.createLabel({
         color: "white",
         height: 40,
@@ -92,8 +92,9 @@ function Controller() {
         top: 75,
         left: 100,
         id: "desc"
-    }), "Label", $.__views.__alloyId10);
-    $.__views.__alloyId10.add($.__views.desc);
+    }), "Label", $.__views.__alloyId9);
+    $.__views.__alloyId9.add($.__views.desc);
+    exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
     $.thumbnail.image = args.photo || "";

@@ -1,7 +1,7 @@
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     $model = arguments[0] ? arguments[0].$model : null;
-    var $ = this, exports = {};
+    var $ = this, exports = {}, __defers = {};
     $.__views.detailWin = A$(Ti.UI.createWindow({
         backgroundImage: "Pic/768_1024BG.jpg",
         title: "Whelan is here :)",
@@ -68,6 +68,28 @@ function Controller() {
         id: "location"
     }), "Label", $.__views.scrollView);
     $.__views.scrollView.add($.__views.location);
+    var __alloyId0 = [];
+    $.__views.mapView = A$(Ti.Map.createView({
+        top: 20,
+        left: 5,
+        width: 500,
+        height: 500,
+        mapType: Ti.Map.STANDARD_TYPE,
+        region: {
+            latitude: 3.13802,
+            longitude: 101.620777,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01
+        },
+        animate: !0,
+        regionFit: !0,
+        userLocation: !0,
+        annotations: __alloyId0,
+        ns: "Ti.Map",
+        id: "mapView"
+    }), "View", $.__views.scrollView);
+    $.__views.scrollView.add($.__views.mapView);
+    exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};
     $.detailWin.title = args.name || "";
@@ -76,6 +98,24 @@ function Controller() {
     $.desc.text = args.desc || "";
     $.location.text = "LOCATION";
     $.feature.text = "FEATURES\n- " + args.price + "\n- " + args.room + "\n- " + args.type;
+    Ti.API.info(args.lat + "    " + args.lon);
+    var annotation = Ti.Map.createAnnotation({
+        latitude: args.lat,
+        longitude: args.lon,
+        title: args.name,
+        subtitle: args.type,
+        animate: !0,
+        myid: 0,
+        image: "Pic/krr_map_dropin.png",
+        rightButton: "Pic/startbutton.png"
+    });
+    $.mapView.region = {
+        latitude: args.lat,
+        longitude: args.lon,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01
+    };
+    $.mapView.addAnnotation(annotation);
     _.extend($, exports);
 }
 

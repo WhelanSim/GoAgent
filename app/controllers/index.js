@@ -38,6 +38,8 @@ function display(_return){
 		item.room = obj.items[i].item.bedroom;
 		item.desc = obj.items[i].item.description;
 		item.photo = obj.items[i].item.photo; 
+		item.lat = obj.items[i].item.geo_lat;
+		item.lon = obj.items[i].item.geo_lon; 
 		
 		if(item.photo === null || item.photo === ''){
 			item.photo = 'KS_nav_ui.png';

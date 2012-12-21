@@ -6,6 +6,7 @@
 			<Label id='desc'/>
 			<Label id='feature'/>
 			<Label id='location'/>
+			<View ns="Ti.Map" id="mapView">
 		</ScrollView>
 	</Window>
 </Alloy>
