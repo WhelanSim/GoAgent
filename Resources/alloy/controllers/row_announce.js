@@ -11,10 +11,10 @@ function Controller() {
         id: "row_announce"
     }), "TableViewRow", null);
     $.addTopLevelView($.__views.row_announce);
-    $.__views.__alloyId7 = A$(Ti.UI.createView({
-        id: "__alloyId7"
+    $.__views.__alloyId8 = A$(Ti.UI.createView({
+        id: "__alloyId8"
     }), "View", $.__views.row_announce);
-    $.__views.row_announce.add($.__views.__alloyId7);
+    $.__views.row_announce.add($.__views.__alloyId8);
     $.__views.title = A$(Ti.UI.createLabel({
         color: "white",
         height: 20,
@@ -28,8 +28,8 @@ function Controller() {
             fontWeight: "bold"
         },
         id: "title"
-    }), "Label", $.__views.__alloyId7);
-    $.__views.__alloyId7.add($.__views.title);
+    }), "Label", $.__views.__alloyId8);
+    $.__views.__alloyId8.add($.__views.title);
     $.__views.desc = A$(Ti.UI.createLabel({
         color: "white",
         height: Ti.UI.SIZE,
@@ -42,8 +42,8 @@ function Controller() {
         top: 85,
         left: 100,
         id: "desc"
-    }), "Label", $.__views.__alloyId7);
-    $.__views.__alloyId7.add($.__views.desc);
+    }), "Label", $.__views.__alloyId8);
+    $.__views.__alloyId8.add($.__views.desc);
     $.__views.dtime = A$(Ti.UI.createLabel({
         color: "white",
         height: 40,
@@ -56,8 +56,8 @@ function Controller() {
         top: 30,
         left: 100,
         id: "dtime"
-    }), "Label", $.__views.__alloyId7);
-    $.__views.__alloyId7.add($.__views.dtime);
+    }), "Label", $.__views.__alloyId8);
+    $.__views.__alloyId8.add($.__views.dtime);
     $.__views.author = A$(Ti.UI.createLabel({
         color: "white",
         height: 40,
@@ -70,8 +70,8 @@ function Controller() {
         top: 45,
         left: 100,
         id: "author"
-    }), "Label", $.__views.__alloyId7);
-    $.__views.__alloyId7.add($.__views.author);
+    }), "Label", $.__views.__alloyId8);
+    $.__views.__alloyId8.add($.__views.author);
     $.__views.newstype = A$(Ti.UI.createLabel({
         color: "white",
         height: 40,
@@ -84,8 +84,8 @@ function Controller() {
         top: 55,
         left: 100,
         id: "newstype"
-    }), "Label", $.__views.__alloyId7);
-    $.__views.__alloyId7.add($.__views.newstype);
+    }), "Label", $.__views.__alloyId8);
+    $.__views.__alloyId8.add($.__views.newstype);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var args = arguments[0] || {};

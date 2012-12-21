@@ -1,6 +1,6 @@
 <Alloy>
 	<Window id='detailWin'>
-		<ImageView id='img'/>
+		<ScrollableView id="scrollableView" showPagingControl="true"/>
 		<ScrollView id='scrollView' layout='vertical'>
 			<Label id='name'/>
 			<Label id='desc'/>

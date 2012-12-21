@@ -8,13 +8,16 @@ function Controller() {
         id: "detailWin"
     }), "Window", null);
     $.addTopLevelView($.__views.detailWin);
-    $.__views.img = A$(Ti.UI.createImageView({
+    var __alloyId0 = [];
+    $.__views.scrollableView = A$(Ti.UI.createScrollableView({
         top: 0,
         width: 768,
         height: 288,
-        id: "img"
-    }), "ImageView", $.__views.detailWin);
-    $.__views.detailWin.add($.__views.img);
+        views: __alloyId0,
+        id: "scrollableView",
+        showPagingControl: "true"
+    }), "ScrollableView", $.__views.detailWin);
+    $.__views.detailWin.add($.__views.scrollableView);
     $.__views.scrollView = A$(Ti.UI.createScrollView({
         width: 768,
         height: Ti.UI.SIZE,
@@ -68,7 +71,7 @@ function Controller() {
         id: "location"
     }), "Label", $.__views.scrollView);
     $.__views.scrollView.add($.__views.location);
-    var __alloyId0 = [];
+    var __alloyId1 = [];
     $.__views.mapView = A$(Ti.Map.createView({
         top: 20,
         left: 5,
@@ -84,7 +87,7 @@ function Controller() {
         animate: !0,
         regionFit: !0,
         userLocation: !0,
-        annotations: __alloyId0,
+        annotations: __alloyId1,
         ns: "Ti.Map",
         id: "mapView"
     }), "View", $.__views.scrollView);
@@ -93,11 +96,28 @@ function Controller() {
     _.extend($, $.__views);
     var args = arguments[0] || {};
     $.detailWin.title = args.name || "";
-    $.img.image = args.photo || "";
     $.name.text = args.name || "";
     $.desc.text = args.desc || "";
     $.location.text = "LOCATION";
     $.feature.text = "FEATURES\n- " + args.price + "\n- " + args.room + "\n- " + args.type;
+    var views = [];
+    views.push(Ti.UI.createView({
+        backgroundImage: args.photo || ""
+    }));
+    for (var i = 0, j = 3; i < j; i++) {
+        var view = Ti.UI.createView({
+            backgroundColor: "#123"
+        });
+        views.push(view);
+    }
+    $.scrollableView.views = views;
+    $.scrollableView.on("singletap", function(e) {
+        Ti.API.info($.scrollableView.currentPage);
+        var a = args.photo;
+        Ti.App.fireEvent("app:tab1 open", {
+            data: a
+        });
+    });
     var annotation = Ti.Map.createAnnotation({
         latitude: args.lat,
         longitude: args.lon,

@@ -2,7 +2,7 @@
 	backgroundImage: "Pic/768_1024BG.jpg",
 	title:'Whelan is here :)'
 },
-"#img":{
+"#scrollableView":{
 	top:0,
 	width:768,
 	height:288

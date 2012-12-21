@@ -70,51 +70,51 @@ function Controller() {
     $.__views.index = A$(Ti.UI.createTabGroup({
         id: "index"
     }), "TabGroup", null);
-    $.__views.__alloyId2 = A$(Ti.UI.createWindow({
+    $.__views.__alloyId3 = A$(Ti.UI.createWindow({
         backgroundColor: "#fff",
         backgroundImage: "Pic/768_1024BG.jpg",
         title: "All Listing",
-        id: "__alloyId2"
+        id: "__alloyId3"
     }), "Window", null);
     $.__views.table = A$(Ti.UI.createTableView({
         backgroundColor: "transparent",
         separatorColor: "transparent",
         id: "table"
-    }), "TableView", $.__views.__alloyId2);
-    $.__views.__alloyId2.add($.__views.table);
+    }), "TableView", $.__views.__alloyId3);
+    $.__views.__alloyId3.add($.__views.table);
     $.__views.tab1 = A$(Ti.UI.createTab({
-        window: $.__views.__alloyId2,
+        window: $.__views.__alloyId3,
         id: "tab1",
         title: "All Listing",
         icon: "KS_nav_ui.png"
     }), "Tab", null);
     $.__views.index.addTab($.__views.tab1);
-    $.__views.__alloyId3 = A$(Ti.UI.createWindow({
+    $.__views.__alloyId4 = A$(Ti.UI.createWindow({
         backgroundColor: "#fff",
         backgroundImage: "Pic/768_1024BG.jpg",
         title: "Announcement",
-        id: "__alloyId3"
+        id: "__alloyId4"
     }), "Window", null);
     $.__views.announcementTable = A$(Ti.UI.createTableView({
         backgroundColor: "transparent",
         separatorColor: "transparent",
         id: "announcementTable"
-    }), "TableView", $.__views.__alloyId3);
-    $.__views.__alloyId3.add($.__views.announcementTable);
+    }), "TableView", $.__views.__alloyId4);
+    $.__views.__alloyId4.add($.__views.announcementTable);
     $.__views.tab2 = A$(Ti.UI.createTab({
-        window: $.__views.__alloyId3,
+        window: $.__views.__alloyId4,
         id: "tab2",
         title: "Announcement",
         icon: "KS_nav_views.png"
     }), "Tab", null);
     $.__views.index.addTab($.__views.tab2);
-    $.__views.__alloyId4 = A$(Ti.UI.createWindow({
+    $.__views.__alloyId5 = A$(Ti.UI.createWindow({
         backgroundColor: "#fff",
         backgroundImage: "Pic/768_1024BG.jpg",
         title: "Favourite",
-        id: "__alloyId4"
+        id: "__alloyId5"
     }), "Window", null);
-    $.__views.__alloyId5 = A$(Ti.UI.createLabel({
+    $.__views.__alloyId6 = A$(Ti.UI.createLabel({
         color: "white",
         height: Ti.UI.SIZE,
         width: Ti.UI.SIZE,
@@ -124,11 +124,11 @@ function Controller() {
         },
         textAlign: "center",
         text: "Favourite listing",
-        id: "__alloyId5"
-    }), "Label", $.__views.__alloyId4);
-    $.__views.__alloyId4.add($.__views.__alloyId5);
+        id: "__alloyId6"
+    }), "Label", $.__views.__alloyId5);
+    $.__views.__alloyId5.add($.__views.__alloyId6);
     $.__views.tab3 = A$(Ti.UI.createTab({
-        window: $.__views.__alloyId4,
+        window: $.__views.__alloyId5,
         id: "tab3",
         title: "Favourite",
         icon: "KS_nav_views.png"
@@ -144,6 +144,14 @@ function Controller() {
     });
     $.table.on("click", function(e) {
         var win = Alloy.createController("detailWindow", tableData[e.index]).getView();
+        $.tab1.open(win);
+    });
+    Ti.App.addEventListener("app:tab1 open", function(e) {
+        Ti.API.info(e);
+        var win = Ti.UI.createWindow(), view = Ti.UI.createImageView({
+            image: e.data
+        });
+        win.add(view);
         $.tab1.open(win);
     });
     $.index.open();

@@ -90,4 +90,15 @@ if (OS_IOS) {
     	$.tab1.open(win);
     });
 }
+
+Ti.App.addEventListener('app:tab1 open', function(e){
+	Ti.API.info(e);
+	
+	var win = Ti.UI.createWindow();
+	var view = Ti.UI.createImageView({
+		image:e.data
+	});
+	win.add(view);
+	$.tab1.open(win);
+});
 $.index.open();
